@@ -1,4 +1,5 @@
 import { blue, orange, grey, red, green } from '@mui/material/colors';
+import { darken } from '@mui/material/styles';
 
 export const lightColors = {
   primary: {
@@ -14,8 +15,8 @@ export const lightColors = {
     contrastText: '#fff',
   },
   background: {
-    default: '#ffffff',
-    paper: '#f5f5f5',
+    default: grey[300],
+    paper: darken(grey[50], 0.12),
   },
   text: {
     primary: grey[900],
@@ -46,32 +47,32 @@ export const darkColors = {
     contrastText: '#fff',
   },
   secondary: {
-    main: orange[500],
-    light: orange[300],
-    dark: orange[700],
+    main: darken(orange[500], 0.5),
+    light: darken(orange[300], 0.5),
+    dark: darken(orange[700], 0.5),
     contrastText: '#fff',
   },
   background: {
-    default: '#0A1929',
-    paper: '#1A2027',
+    default: darken(blue[900], 0.9),
+    paper: darken(blue[900], 0.8),
   },
   text: {
     primary: '#fff',
     secondary: grey[400],
   },
   success: {
-    main: green[600],
-    light: green[400],
-    dark: green[800],
+    main: darken(green[600], 0.5),
+    light: darken(green[400], 0.5),
+    dark: darken(green[800], 0.5),
   },
   warning: {
-    main: orange[600],
-    light: orange[400],
-    dark: orange[800],
+    main: darken(orange[600], 0.5),
+    light: darken(orange[400], 0.5),
+    dark: darken(orange[800], 0.5),
   },
   error: {
-    main: red[600],
-    light: red[400],
-    dark: red[800],
+    main: darken(red[600], 0.5),
+    light: darken(red[400], 0.5),
+    dark: darken(red[800], 0.5),
   },
 };

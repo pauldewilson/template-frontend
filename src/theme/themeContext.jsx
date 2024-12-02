@@ -1,27 +1,29 @@
-import { createContext, useContext, useEffect, useState } from 'react';
-import { ThemeProvider as MUIThemeProvider } from '@mui/material/styles';
-import CssBaseline from '@mui/material/CssBaseline';
-import { createAppTheme } from './theme';
+import { createContext, useContext, useEffect, useState } from "react";
+import { ThemeProvider as MUIThemeProvider } from "@mui/material/styles";
+import CssBaseline from "@mui/material/CssBaseline";
+import { createAppTheme } from "./theme";
+import PropTypes from "prop-types";
+import storage from "../utils/storage";
 
 const ThemeContext = createContext({
   toggleColorMode: () => {},
-  mode: 'dark',
+  mode: "dark",
 });
 
 export const useTheme = () => useContext(ThemeContext);
 
 export const ThemeProvider = ({ children }) => {
   const [mode, setMode] = useState(() => {
-    const savedMode = localStorage.getItem('themeMode');
-    return savedMode || 'dark';
+    const savedMode = storage.get("theme", "dark");
+    return savedMode;
   });
 
   useEffect(() => {
-    localStorage.setItem('themeMode', mode);
+    storage.set("theme", mode);
   }, [mode]);
 
   const toggleColorMode = () => {
-    setMode((prevMode) => (prevMode === 'light' ? 'dark' : 'light'));
+    setMode((prevMode) => (prevMode === "light" ? "dark" : "light"));
   };
 
   const theme = createAppTheme(mode);
@@ -34,4 +36,8 @@ export const ThemeProvider = ({ children }) => {
       </MUIThemeProvider>
     </ThemeContext.Provider>
   );
+};
+
+ThemeProvider.propTypes = {
+  children: PropTypes.node.isRequired,
 };
