@@ -65,7 +65,7 @@ export const Success = () => {
           <StyledButton
             variant="contained"
             color="primary"
-            onClick={() => navigate("/styles")}
+            onClick={() => navigate("/showcases")}
             data-testid="logout-button"
           >
             Styles Page

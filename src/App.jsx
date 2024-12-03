@@ -9,7 +9,7 @@ import { Index } from './pages/Index';
 import { Login } from './pages/Login';
 import { Success } from './pages/Success';
 import { NotFound } from './pages/NotFound';
-import { StylesShowcase } from './pages/StylesShowcase';
+import Showcases from './pages/Showcases';
 
 const ThemeToggle = () => {
   const { mode, toggleColorMode } = useTheme();
@@ -33,7 +33,7 @@ function App() {
             <ThemeToggle />
             <Routes>
               <Route path="/" element={<Index />} />
-              <Route path="/styles" element={<StylesShowcase />} />
+              <Route path="/showcases" element={<Showcases />} />
               <Route path="/login" element={<Login />} />
               <Route path="*" element={<NotFound />} />
               <Route

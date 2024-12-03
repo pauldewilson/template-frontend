@@ -1,9 +1,6 @@
-// src/pages/StylesShowcase.jsx
 import { useState } from "react";
-import { useNavigate } from "react-router-dom";
 import {
   Box,
-  Container,
   Paper,
   Typography,
   TextField,
@@ -21,13 +18,11 @@ import {
   Card,
   CardContent,
   InputAdornment,
-  Link,
 } from "@mui/material";
 import { LoginButton, LogoutButton, StyledButton } from "../components/buttons";
 import { Search } from "@mui/icons-material";
 
 export const StylesShowcase = () => {
-  const navigate = useNavigate();
   const [content, setContent] = useState({
     title: "Lorem Ipsum Showcase",
     subtitle: "A comprehensive display of styled components",
@@ -43,11 +38,8 @@ export const StylesShowcase = () => {
   };
 
   return (
-    <Container maxWidth="lg">
+    <Paper>
       {/* Content Editor */}
-      <Link onClick={() => navigate("/")}>Homepage</Link>
-      <br></br>
-      <Link onClick={() => navigate("/success")}>Success</Link>
       <Paper>
         <Typography variant="h2" gutterBottom>
           Content Editor
@@ -295,6 +287,13 @@ export const StylesShowcase = () => {
             </FormControl>
             <FormControlLabel control={<Checkbox />} label="Checkbox Example" />
             <FormControlLabel control={<Switch />} label="Switch Example" />
+            <FormControl fullWidth>
+              <Select value="option1" displayEmpty>
+                <MenuItem value="option1">Option 1</MenuItem>
+                <MenuItem value="option2">Option 2</MenuItem>
+                <MenuItem value="option3">Option 3</MenuItem>
+              </Select>
+            </FormControl>
           </Grid>
         </Grid>
       </Paper>
@@ -344,21 +343,7 @@ export const StylesShowcase = () => {
           </Grid>
         </Grid>
       </Paper>
-
-      {/* Select */}
-      <Paper>
-        <Typography variant="h2" gutterBottom>
-          Select
-        </Typography>
-        <FormControl fullWidth>
-          <Select value="option1" displayEmpty>
-            <MenuItem value="option1">Option 1</MenuItem>
-            <MenuItem value="option2">Option 2</MenuItem>
-            <MenuItem value="option3">Option 3</MenuItem>
-          </Select>
-        </FormControl>
-      </Paper>
-    </Container>
+    </Paper>
   );
 };
 
