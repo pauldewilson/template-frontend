@@ -10,6 +10,7 @@ import {
 import { useAuth } from "../hooks/useAuth";
 import storage from "../utils/storage";
 import { LogoutButton, StyledButton } from "../components/buttons";
+import config from "../utils/config";
 
 export const Success = () => {
   const navigate = useNavigate();
@@ -94,6 +95,19 @@ export const Success = () => {
             }}
           >
             {JSON.stringify(envVars, null, 2)}
+          </Box>
+          <Typography variant="h2">src/utils/config.js</Typography>
+          <Box
+            component="pre"
+            sx={{
+              mt: 2,
+              p: 2,
+              bgcolor: "background.default",
+              borderRadius: 1,
+              overflow: "auto",
+            }}
+          >
+            {JSON.stringify(config, null, 2)}
           </Box>
         </Paper>
 

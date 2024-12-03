@@ -1,8 +1,9 @@
 const REQUIRED_ENV_VARS = [
   'VITE_ENV',
+  'VITE_IS_DOCKER',
   'VITE_API_URL',
   'VITE_APP_NAME',
-  'VITE_APP_STORAGE_PREFIX'
+  'VITE_APP_STORAGE_PREFIX',
 ];
 
 const validateEnvVars = () => {
@@ -23,6 +24,9 @@ validateEnvVars();
 
 const config = {
   isDevelopment: import.meta.env.VITE_ENV === "development",
+  isStaging: import.meta.env.VITE_ENV === "staging",
+  isProduction: import.meta.env.VITE_ENV === "production",
+  isDocker: import.meta.env.VITE_IS_DOCKER === "true",
   apiUrl: import.meta.env.VITE_API_URL,
   appName: import.meta.env.VITE_APP_NAME,
   storagePrefix: import.meta.env.VITE_APP_STORAGE_PREFIX,
