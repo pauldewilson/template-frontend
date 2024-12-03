@@ -1,3 +1,6 @@
+// Pixel multiple for spacing and sizing (mui uses 8px as base)
+const muiPixelMultiple = 8;
+
 export const components = {
   // Global styles
   MuiCssBaseline: {
@@ -8,7 +11,7 @@ export const components = {
           width: 8,
         },
         "&::-webkit-scrollbar-thumb, & *::-webkit-scrollbar-thumb": {
-          borderRadius: 8,
+          borderRadius: 4,
           backgroundColor: "#6b6b6b",
           minHeight: 24,
         },
@@ -32,7 +35,7 @@ export const components = {
   MuiButton: {
     styleOverrides: {
       root: {
-        borderRadius: 8,
+        borderRadius: 4,
         textTransform: "none",
         fontWeight: 600,
         padding: "8px 16px",
@@ -43,7 +46,10 @@ export const components = {
   MuiPaper: {
     styleOverrides: {
       root: {
-        borderRadius: 12,
+        borderRadius: 4,
+        padding: 3 * muiPixelMultiple,
+        marginBottom: 4 * muiPixelMultiple,
+        backgroundColor: "background.paper",
       },
     },
   },
@@ -126,7 +132,7 @@ export const components = {
     styleOverrides: {
       root: {
         "& .MuiOutlinedInput-root": {
-          borderRadius: 8,
+          borderRadius: 4,
           "&.Mui-focused": {
             boxShadow: "0 0 0 2px rgba(0,0,0,0.05)",
           },
@@ -185,7 +191,7 @@ export const components = {
     },
     styleOverrides: {
       root: {
-        borderRadius: 8,
+        borderRadius: 4,
       },
     },
   },
@@ -215,8 +221,8 @@ export const components = {
   // Input Adornment
   MuiInputAdornment: {
     styleOverrides: {
-      root: {
-        color: "rgba(0, 0, 0, 0.54)",
+      root: ({ theme }) => ({
+        color: theme.palette.text.primary, // This will adapt to light/dark theme
         "& .MuiSvgIcon-root": {
           fontSize: "1.25rem",
         },
@@ -226,14 +232,14 @@ export const components = {
         "&.MuiInputAdornment-positionEnd": {
           marginLeft: 8,
         },
-      },
+      }),
     },
   },
   // Alert - Additional properties
   MuiAlert: {
     styleOverrides: {
       root: {
-        borderRadius: 8,
+        borderRadius: 4,
         padding: "12px 16px",
       },
       standardError: {
@@ -285,7 +291,7 @@ export const components = {
   MuiCard: {
     styleOverrides: {
       root: {
-        borderRadius: 12,
+        borderRadius: 4,
         boxShadow: "0 2px 8px rgba(0,0,0,0.1)",
       },
     },
@@ -302,13 +308,13 @@ export const components = {
   MuiSwitch: {
     styleOverrides: {
       root: {
-        padding: 8,
+        padding: 10,
       },
       track: {
-        borderRadius: 22,
+        borderRadius: 4,
       },
       thumb: {
-        borderRadius: "50%",
+        borderRadius: 4,
       },
     },
   },
@@ -360,10 +366,10 @@ export const components = {
   MuiLink: {
     styleOverrides: {
       root: {
-        cursor: 'pointer',
-        textDecoration: 'none',
-        '&:hover': {
-          textDecoration: 'underline',
+        cursor: "pointer",
+        textDecoration: "none",
+        "&:hover": {
+          textDecoration: "underline",
         },
       },
     },

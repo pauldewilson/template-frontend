@@ -48,7 +48,7 @@ export const StylesShowcase = () => {
       <Link onClick={() => navigate("/")}>Homepage</Link>
       <br></br>
       <Link onClick={() => navigate("/success")}>Success</Link>
-      <Paper sx={{ p: 3, mb: 4, mt: 4 }}>
+      <Paper>
         <Typography variant="h2" gutterBottom>
           Content Editor
         </Typography>
@@ -94,7 +94,7 @@ export const StylesShowcase = () => {
         </Grid>
       </Paper>
       {/* Paper Showcase */}
-      <Paper sx={{ p: 3, mb: 4 }}>
+      <Paper>
         <Typography variant="h2" gutterBottom>
           Paper
         </Typography>
@@ -103,7 +103,7 @@ export const StylesShowcase = () => {
         </Typography>
         <Grid container spacing={3}>
           <Grid item xs={12} md={4}>
-            <Paper elevation={1} sx={{ p: 3, bgcolor: "background.paper" }}>
+            <Paper elevation={1}>
               <Typography variant="h6" gutterBottom>
                 Elevation 1
               </Typography>
@@ -111,7 +111,7 @@ export const StylesShowcase = () => {
             </Paper>
           </Grid>
           <Grid item xs={12} md={4}>
-            <Paper elevation={4} sx={{ p: 3, bgcolor: "background.paper" }}>
+            <Paper elevation={4}>
               <Typography variant="h6" gutterBottom>
                 Elevation 4
               </Typography>
@@ -119,7 +119,7 @@ export const StylesShowcase = () => {
             </Paper>
           </Grid>
           <Grid item xs={12} md={4}>
-            <Paper elevation={8} sx={{ p: 3, bgcolor: "background.paper" }}>
+            <Paper elevation={8}>
               <Typography variant="h6" gutterBottom>
                 Elevation 8
               </Typography>
@@ -138,11 +138,7 @@ export const StylesShowcase = () => {
             </Paper>
           </Grid>
           <Grid item xs={12} md={6}>
-            <Paper
-              square
-              elevation={2}
-              sx={{ p: 3, bgcolor: "background.paper" }}
-            >
+            <Paper>
               <Typography variant="h6" gutterBottom>
                 Square (No Border Radius)
               </Typography>
@@ -153,7 +149,7 @@ export const StylesShowcase = () => {
       </Paper>
 
       {/* Typography Showcase */}
-      <Paper sx={{ p: 3, mb: 4 }}>
+      <Paper>
         <Typography variant="h1">Heading 1: {content.title}</Typography>
         <Typography variant="h2">Heading 2: {content.subtitle}</Typography>
         <Typography variant="h3">Heading 3: {content.subtitle}</Typography>
@@ -175,7 +171,7 @@ export const StylesShowcase = () => {
       </Paper>
 
       {/* Buttons Showcase */}
-      <Paper sx={{ p: 3, mb: 4 }}>
+      <Paper>
         <Typography variant="h2" gutterBottom>
           Buttons
         </Typography>
@@ -183,15 +179,7 @@ export const StylesShowcase = () => {
         {/* Standard Styled Buttons */}
         <Box sx={{ mb: 4 }}>
           {/* Outlined Group */}
-          <Paper
-            variant="outlined"
-            sx={{
-              p: 3,
-              flex: 1,
-              mb: 3,
-              bgcolor: "background.default",
-            }}
-          >
+          <Paper variant="outlined">
             <Typography variant="h3" gutterBottom>
               Outlined
             </Typography>
@@ -215,14 +203,7 @@ export const StylesShowcase = () => {
           </Paper>
 
           {/* Contained Group */}
-          <Paper
-            variant="outlined"
-            sx={{
-              p: 3,
-              flex: 1,
-              bgcolor: "background.default",
-            }}
-          >
+          <Paper variant="outlined">
             <Typography variant="h3" gutterBottom>
               Contained
             </Typography>
@@ -247,19 +228,12 @@ export const StylesShowcase = () => {
         </Box>
 
         {/* Special Buttons */}
-        <Typography variant="h3" gutterBottom>
-          Special Buttons
-        </Typography>
         <Box sx={{ display: "flex", gap: 6 }}>
           {/* Special Outlined Group */}
-          <Paper
-            variant="outlined"
-            sx={{
-              p: 3,
-              flex: 1,
-              bgcolor: "background.default",
-            }}
-          >
+          <Paper variant="outlined">
+            <Typography variant="h3" gutterBottom>
+              Special Buttons
+            </Typography>
             <Box sx={{ display: "flex", gap: 2, flexWrap: "wrap" }}>
               <LoginButton>Login Button</LoginButton>
               <LogoutButton>Logout Button</LogoutButton>
@@ -271,7 +245,7 @@ export const StylesShowcase = () => {
       </Paper>
 
       {/* Form Elements */}
-      <Paper sx={{ p: 3, mb: 4 }}>
+      <Paper>
         <Typography variant="h2" gutterBottom>
           Form Elements
         </Typography>
@@ -326,7 +300,7 @@ export const StylesShowcase = () => {
       </Paper>
 
       {/* Alerts */}
-      <Paper sx={{ p: 3, mb: 4 }}>
+      <Paper>
         <Typography variant="h2" gutterBottom>
           Alerts
         </Typography>
@@ -343,7 +317,7 @@ export const StylesShowcase = () => {
       </Paper>
 
       {/* Cards */}
-      <Paper sx={{ p: 3, mb: 4 }}>
+      <Paper>
         <Typography variant="h2" gutterBottom>
           Cards
         </Typography>
@@ -372,7 +346,7 @@ export const StylesShowcase = () => {
       </Paper>
 
       {/* Select */}
-      <Paper sx={{ p: 3, mb: 4 }}>
+      <Paper>
         <Typography variant="h2" gutterBottom>
           Select
         </Typography>
