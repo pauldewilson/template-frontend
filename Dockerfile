@@ -8,8 +8,8 @@ COPY nginx.conf /etc/nginx/nginx.conf
 # Expose port 80
 EXPOSE 80
 
-ENV VITE_IS_DOCKER=dockerfile
-ENV VITE_ENV=production
+ENV VITE_IS_DOCKER=true
+ENV VITE_ENV=development
 ENV VITE_API_URL=http://localhost:3000
 ENV VITE_APP_NAME="React Template"
 ENV VITE_APP_STORAGE_PREFIX=template
