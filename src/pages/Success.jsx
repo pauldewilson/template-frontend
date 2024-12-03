@@ -68,7 +68,7 @@ export const Success = () => {
             onClick={() => navigate("/showcases")}
             data-testid="logout-button"
           >
-            Styles Page
+            Showcase Page
           </StyledButton>
           {user && (
             <LogoutButton

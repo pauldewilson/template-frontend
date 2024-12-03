@@ -1,6 +1,7 @@
 import { useNavigate } from "react-router-dom";
 import ThemeShowcase from "./ThemeShowcase";
 import StylesShowcase from "./StylesShowcase";
+import MediaShowcase from "./MediaShowcase";
 import { Link, Container } from "@mui/material";
 
 const Showcases = () => {
@@ -13,6 +14,7 @@ const Showcases = () => {
 
       <ThemeShowcase />
       <StylesShowcase />
+      <MediaShowcase />
     </Container>
   );
 };
