@@ -1,6 +1,16 @@
 // Pixel multiple for spacing and sizing (mui uses 8px as base)
 const muiPixelMultiple = 8;
 
+const disabledStyles = {
+  backgroundColor: "rgba(66, 66, 66, 0.04)",
+  cursor: "not-allowed",
+  borderColor: "rgba(55, 55, 55, 0.52)",
+  textColor: ({ theme }) =>
+    theme.palette.mode === "dark"
+      ? "rgba(255, 255, 255, 0.25)"
+      : "rgba(0, 0, 0, 0.25)",
+};
+
 export const components = {
   // Global styles
   MuiCssBaseline: {
@@ -123,6 +133,7 @@ export const components = {
     },
   },
   // Form Related Components
+
   MuiTextField: {
     defaultProps: {
       variant: "outlined",
@@ -130,17 +141,35 @@ export const components = {
       size: "medium",
     },
     styleOverrides: {
-      root: {
+      root: ({ theme }) => ({
+        "& .MuiFormLabel-root.Mui-disabled": {
+          color: disabledStyles.textColor({ theme }),
+        },
+        "& .MuiInputLabel-root.Mui-disabled": {
+          color: disabledStyles.textColor({ theme }),
+        },
         "& .MuiOutlinedInput-root": {
           borderRadius: 4,
           "&.Mui-focused": {
             boxShadow: "0 0 0 2px rgba(0,0,0,0.05)",
           },
+          "&.Mui-disabled": {
+            backgroundColor: disabledStyles.backgroundColor,
+            "& fieldset": {
+              borderColor: disabledStyles.borderColor,
+            },
+            "& input": {
+              cursor: disabledStyles.cursor,
+              color: disabledStyles.textColor({ theme }),
+              "&::placeholder": {
+                color: disabledStyles.textColor({ theme }),
+              },
+            },
+          },
         },
-      },
+      }),
     },
-  },
-  // Form Control
+  }, // Form Control
   MuiFormControl: {
     styleOverrides: {
       root: {
@@ -152,22 +181,34 @@ export const components = {
   // Form Label
   MuiFormLabel: {
     styleOverrides: {
-      root: {
+      root: ({ theme }) => ({
         fontSize: "0.875rem",
         fontWeight: 500,
         "&.Mui-focused": {
           color: "inherit",
         },
-      },
+        "&.Mui-disabled": {
+          color: disabledStyles.textColor({ theme }),
+        },
+      }),
     },
   },
   // Form Helper Text
   MuiFormHelperText: {
     styleOverrides: {
-      root: {
+      root: ({ theme }) => ({
         marginLeft: 0,
         fontSize: "0.75rem",
-      },
+        "&.Mui-error": {
+          color:
+            theme.palette.mode === "dark"
+              ? "rgba(255, 82, 82, 0.8)" // lighter red for dark mode
+              : "rgba(211, 47, 47, 0.9)", // darker red for light mode
+        },
+        "&.Mui-disabled": {
+          color: disabledStyles.textColor({ theme }),
+        },
+      }),
     },
   },
   // Input Base
@@ -192,22 +233,34 @@ export const components = {
     styleOverrides: {
       root: {
         borderRadius: 4,
+        "&.Mui-disabled": {
+          backgroundColor: disabledStyles.backgroundColor,
+          opacity: disabledStyles.opacity,
+          "& .MuiOutlinedInput-notchedOutline": {
+            borderColor: disabledStyles.borderColor,
+          },
+        },
       },
     },
-  },
-  // Checkbox and Radio
+  }, // Checkbox and Radio
   MuiCheckbox: {
     styleOverrides: {
-      root: {
+      root: ({ theme }) => ({
         padding: 8,
-      },
+        "&.Mui-disabled": {
+          color: disabledStyles.textColor({ theme }),
+        },
+      }),
     },
   },
   MuiRadio: {
     styleOverrides: {
-      root: {
+      root: ({ theme }) => ({
         padding: 8,
-      },
+        "&.Mui-disabled": {
+          color: disabledStyles.textColor({ theme }),
+        },
+      }),
     },
   },
   // Form Group (for checkboxes/radios)
@@ -222,7 +275,7 @@ export const components = {
   MuiInputAdornment: {
     styleOverrides: {
       root: ({ theme }) => ({
-        color: theme.palette.text.primary, // This will adapt to light/dark theme
+        color: theme.palette.text.primary,
         "& .MuiSvgIcon-root": {
           fontSize: "1.25rem",
         },
@@ -231,6 +284,10 @@ export const components = {
         },
         "&.MuiInputAdornment-positionEnd": {
           marginLeft: 8,
+        },
+        ".Mui-disabled &": {
+          opacity: disabledStyles.opacity,
+          color: "rgba(0, 0, 0, 0.38)", // Lighter color for disabled state
         },
       }),
     },
@@ -307,9 +364,17 @@ export const components = {
   // Switch component
   MuiSwitch: {
     styleOverrides: {
-      root: {
+      root: ({ theme }) => ({
         padding: 10,
-      },
+        "&.Mui-disabled": {
+          "& .MuiSwitch-track": {
+            backgroundColor: `${disabledStyles.backgroundColor} !important`,
+          },
+          "& .MuiSwitch-thumb": {
+            backgroundColor: disabledStyles.textColor({ theme }),
+          },
+        },
+      }),
       track: {
         borderRadius: 4,
       },
@@ -340,13 +405,19 @@ export const components = {
   // Form Control Label
   MuiFormControlLabel: {
     styleOverrides: {
-      root: {
+      root: ({ theme }) => ({
         marginLeft: -8,
         marginRight: 16,
-      },
-      label: {
-        fontSize: "0.875rem",
-      },
+        "&.Mui-disabled": {
+          cursor: disabledStyles.cursor,
+          "& .MuiTypography-root": {
+            color: disabledStyles.textColor({ theme }),
+          },
+        },
+        label: {
+          fontSize: "0.875rem",
+        },
+      }),
     },
   },
   // MenuItem

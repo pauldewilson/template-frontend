@@ -47,7 +47,7 @@ def generate_images():
         if ext in ['svg']:
             # Generate SVG
             with open(local_path, 'w', encoding='utf-8') as f:
-                f.write(generate_svg_content(name))
+                f.write(generate_svg_content(name + '.' + ext))
             print(f'Generated SVG: {local_path}')
         else:
             # Generate raster image using PIL
@@ -68,7 +68,7 @@ def generate_images():
             y = (500 - text_height) / 2
 
             # Draw text
-            draw.text((x, y), name, font=font, fill='white')
+            draw.text((x, y), name + '.' + ext, font=font, fill='white')
             img.save(local_path)
             print(f'Generated raster: {local_path}')
 

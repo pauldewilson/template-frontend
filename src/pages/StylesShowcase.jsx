@@ -237,63 +237,141 @@ export const StylesShowcase = () => {
       </Paper>
 
       {/* Form Elements */}
-      <Paper>
-        <Typography variant="h2" gutterBottom>
+      <Paper className="p-6">
+        <Typography variant="h2" className="mb-6 text-2xl font-bold">
           Form Elements
         </Typography>
-        <Grid container spacing={3}>
+        <Grid container spacing={6}>
+          {/* Active Elements - Left Column */}
           <Grid item xs={12} md={6}>
-            <TextField
-              label="Standard Input"
-              placeholder="Placeholder text"
-              fullWidth
-              margin="normal"
-            />
-            <TextField
-              label="With Icon"
-              fullWidth
-              margin="normal"
-              InputProps={{
-                startAdornment: (
-                  <InputAdornment position="start">
-                    <Search />
-                  </InputAdornment>
-                ),
-              }}
-            />
-            <TextField
-              label="With Error"
-              error
-              helperText="Error message here"
-              fullWidth
-              margin="normal"
-            />
+            <Typography variant="h6" className="mb-4">
+              Active Elements
+            </Typography>
+            <div className="space-y-4">
+              <TextField
+                label="Standard Input"
+                placeholder="Placeholder text"
+                className="w-full"
+              />
+
+              <TextField
+                label="With Icon"
+                className="w-full"
+                InputProps={{
+                  startAdornment: (
+                    <InputAdornment position="start">
+                      <Search className="h-4 w-4" />
+                    </InputAdornment>
+                  ),
+                }}
+              />
+
+              <TextField
+                label="With Error"
+                error
+                helperText="Error message here"
+                className="w-full"
+              />
+
+              <FormControl className="w-full">
+                <FormLabel>Radio Group</FormLabel>
+                <RadioGroup defaultValue="option1">
+                  <FormControlLabel
+                    value="option1"
+                    control={<Radio />}
+                    label="Option 1"
+                  />
+                  <FormControlLabel
+                    value="option2"
+                    control={<Radio />}
+                    label="Option 2"
+                  />
+                </RadioGroup>
+              </FormControl>
+
+              <FormControlLabel
+                control={<Checkbox />}
+                label="Checkbox Example"
+              />
+              <FormControlLabel control={<Switch />} label="Switch Example" />
+
+              <FormControl className="w-full">
+                <Select defaultValue="option1">
+                  <MenuItem value="option1">Option 1</MenuItem>
+                  <MenuItem value="option2">Option 2</MenuItem>
+                  <MenuItem value="option3">Option 3</MenuItem>
+                </Select>
+              </FormControl>
+            </div>
           </Grid>
+
+          {/* Disabled Elements - Right Column */}
           <Grid item xs={12} md={6}>
-            <FormControl fullWidth margin="normal">
-              <FormLabel>Radio Group</FormLabel>
-              <RadioGroup defaultValue="option1">
-                <FormControlLabel
-                  value="option1"
-                  control={<Radio />}
-                  label="Option 1"
-                />
-                <FormControlLabel
-                  value="option2"
-                  control={<Radio />}
-                  label="Option 2"
-                />
-              </RadioGroup>
-            </FormControl>
-            <FormControlLabel control={<Checkbox />} label="Checkbox Example" />
-            <FormControlLabel control={<Switch />} label="Switch Example" />
-            <FormControl fullWidth>
-              <Select value="option1" displayEmpty>
-                <MenuItem value="option1">Option 1</MenuItem>
-                <MenuItem value="option2">Option 2</MenuItem>
-                <MenuItem value="option3">Option 3</MenuItem>
-              </Select>
-            </FormControl>
+            <Typography variant="h6" className="mb-4">
+              Disabled Elements
+            </Typography>
+            <div className="space-y-4">
+              <TextField
+                label="Standard Input"
+                placeholder="Placeholder text"
+                className="w-full"
+                disabled
+              />
+
+              <TextField
+                label="With Icon"
+                className="w-full"
+                disabled
+                InputProps={{
+                  startAdornment: (
+                    <InputAdornment position="start">
+                      <Search className="h-4 w-4" />
+                    </InputAdornment>
+                  ),
+                }}
+              />
+
+              <TextField
+                label="With Error"
+                error
+                helperText="Error message here"
+                className="w-full"
+                disabled
+              />
+
+              <FormControl className="w-full" disabled>
+                <FormLabel>Radio Group</FormLabel>
+                <RadioGroup defaultValue="option1">
+                  <FormControlLabel
+                    value="option1"
+                    control={<Radio />}
+                    label="Option 1"
+                  />
+                  <FormControlLabel
+                    value="option2"
+                    control={<Radio />}
+                    label="Option 2"
+                  />
+                </RadioGroup>
+              </FormControl>
+
+              <FormControlLabel
+                control={<Checkbox disabled />}
+                label="Checkbox Example"
+              />
+              <FormControlLabel
+                control={<Switch disabled />}
+                label="Switch Example"
+              />
+
+              <FormControl className="w-full" disabled>
+                <Select defaultValue="option1">
+                  <MenuItem value="option1">Option 1</MenuItem>
+                  <MenuItem value="option2">Option 2</MenuItem>
+                  <MenuItem value="option3">Option 3</MenuItem>
+                </Select>
+              </FormControl>
+            </div>
           </Grid>
         </Grid>
       </Paper>

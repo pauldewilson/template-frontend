@@ -9,6 +9,6 @@
         fill="white"
         text-anchor="middle"
         dominant-baseline="middle">
-        logo-dark
+        logo-dark.svg
     </text>
 </svg>

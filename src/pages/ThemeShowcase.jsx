@@ -269,10 +269,10 @@ export const ThemeShowcase = () => {
                 }}
               >
                 <Typography variant="h6" color="primary.main" gutterBottom>
-                  Primary with Background
+                  Primary Background
                 </Typography>
                 <Typography variant="body2" color="text.secondary">
-                  Shows how primary color works with background and text
+                  Shows text contrast on primary background
                 </Typography>
               </Paper>
             </Grid>
@@ -301,7 +301,7 @@ export const ThemeShowcase = () => {
                 }}
               >
                 <Typography variant="h6" sx={{ color: "#fff" }} gutterBottom>
-                  Gradient Example
+                  Gradient Background
                 </Typography>
                 <Typography
                   variant="body2"
