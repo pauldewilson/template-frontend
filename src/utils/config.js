@@ -1,4 +1,5 @@
 const config = {
+  env: import.meta.env.VITE_ENV,
   isDevelopment: import.meta.env.VITE_ENV === "development",
   isStaging: import.meta.env.VITE_ENV === "staging",
   isProduction: import.meta.env.VITE_ENV === "production",
