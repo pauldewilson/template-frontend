@@ -28,6 +28,10 @@ export const useForm = (initialState) => {
     dispatch({ type: FORM_ACTIONS.CLEAR_ERROR });
   }, []);
 
+  const setSubmitted = useCallback((isSubmitted) => {
+    dispatch({ type: FORM_ACTIONS.SET_SUBMITTED, isSubmitted });
+  }, []);
+
   return {
     state,
     setField,
@@ -36,5 +40,6 @@ export const useForm = (initialState) => {
     resetForm,
     setForm,
     clearError,
+    setSubmitted,
   };
 };

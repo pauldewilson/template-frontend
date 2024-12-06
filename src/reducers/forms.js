@@ -6,6 +6,7 @@ export const FORM_ACTIONS = {
   RESET_FORM: "RESET_FORM",
   SET_FORM: "SET_FORM",
   CLEAR_ERROR: "CLEAR_ERROR",
+  SET_SUBMITTED: "SET_SUBMITTED"
 };
 
 // Initial States
@@ -61,6 +62,11 @@ export const formsReducer = (state, action) => {
       return {
         ...state,
         error: "",
+      };
+    case FORM_ACTIONS.SET_SUBMITTED:
+      return {
+        ...state,
+        isSubmitted: action.isSubmitted,
       };
     default:
       return state;
