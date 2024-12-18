@@ -17,3 +17,6 @@ services:
       - VITE_ENV=development
       - VITE_APP_NAME="React Template"
       - VITE_APP_STORAGE_PREFIX=template
+      - ENV VITE_MOCK_LOGIN=true
+      - ENV VITE_API_BASE_URI=http://localhost:5000/
+      - ENV VITE_API_BASE_PATH=api/v1/
