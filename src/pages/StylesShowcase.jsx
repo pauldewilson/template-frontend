@@ -18,6 +18,15 @@ import {
   Card,
   CardContent,
   InputAdornment,
+  Table,
+  TableBody,
+  TableCell,
+  TableContainer,
+  TableHead,
+  TableRow,
+  TableFooter,
+  TablePagination,
+  TableSortLabel,
 } from "@mui/material";
 import { LoginButton, LogoutButton, StyledButton } from "../components/buttons";
 import { Search } from "@mui/icons-material";
@@ -30,11 +39,119 @@ export const StylesShowcase = () => {
     buttonText: "Click Me",
   });
 
+  // Table state
+  const [page, setPage] = useState(0);
+  const [rowsPerPage, setRowsPerPage] = useState(5);
+  const [orderBy, setOrderBy] = useState("name");
+  const [order, setOrder] = useState("asc");
+
   const handleContentChange = (field) => (event) => {
     setContent((prev) => ({
       ...prev,
       [field]: event.target.value,
     }));
+  };
+
+  // Sample data for tables
+  const tableData = [
+    {
+      id: 1,
+      name: "John Doe",
+      role: "Developer",
+      status: "Active",
+      department: "Engineering",
+      joinDate: "2023-01-15",
+    },
+    {
+      id: 2,
+      name: "Jane Smith",
+      role: "Designer",
+      status: "Away",
+      department: "Design",
+      joinDate: "2023-02-20",
+    },
+    {
+      id: 3,
+      name: "Mike Johnson",
+      role: "Manager",
+      status: "Active",
+      department: "Management",
+      joinDate: "2023-03-10",
+    },
+    {
+      id: 4,
+      name: "Sarah Williams",
+      role: "Developer",
+      status: "Offline",
+      department: "Engineering",
+      joinDate: "2023-04-05",
+    },
+    {
+      id: 5,
+      name: "Tom Brown",
+      role: "Designer",
+      status: "Active",
+      department: "Design",
+      joinDate: "2023-05-12",
+    },
+    {
+      id: 6,
+      name: "Emily Davis",
+      role: "Manager",
+      status: "Away",
+      department: "Management",
+      joinDate: "2023-06-18",
+    },
+    {
+      id: 7,
+      name: "David Wilson",
+      role: "Developer",
+      status: "Active",
+      department: "Engineering",
+      joinDate: "2023-07-22",
+    },
+    {
+      id: 8,
+      name: "Lisa Anderson",
+      role: "Designer",
+      status: "Offline",
+      department: "Design",
+      joinDate: "2023-08-30",
+    },
+  ];
+
+  // Sorting handler
+  const handleRequestSort = (property) => {
+    const isAsc = orderBy === property && order === "asc";
+    setOrder(isAsc ? "desc" : "asc");
+    setOrderBy(property);
+  };
+
+  // Pagination handlers
+  const handleChangePage = (event, newPage) => {
+    setPage(newPage);
+  };
+
+  const handleChangeRowsPerPage = (event) => {
+    setRowsPerPage(parseInt(event.target.value, 10));
+    setPage(0);
+  };
+
+  // Sort function
+  const sortData = (data) => {
+    return data.sort((a, b) => {
+      if (order === "asc") {
+        return a[orderBy] < b[orderBy] ? -1 : 1;
+      } else {
+        return a[orderBy] > b[orderBy] ? -1 : 1;
+      }
+    });
+  };
+
+  // Get current page data
+  const getCurrentPageData = () => {
+    const sorted = sortData([...tableData]);
+    return sorted.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage);
   };
 
   return (
@@ -420,6 +537,142 @@ export const StylesShowcase = () => {
             </Card>
           </Grid>
         </Grid>
+      </Paper>
+
+      <Paper sx={{ mt: 4, p: 3 }}>
+        <Typography variant="h2" gutterBottom>
+          Tables
+        </Typography>
+
+        <Typography variant="h6" gutterBottom sx={{ mt: 4 }}>
+          Full-Featured Table
+        </Typography>
+        <TableContainer component={Paper} variant="outlined">
+          <Table stickyHeader>
+            <TableHead>
+              <TableRow>
+                <TableCell>
+                  <TableSortLabel
+                    active={orderBy === "name"}
+                    direction={orderBy === "name" ? order : "asc"}
+                    onClick={() => handleRequestSort("name")}
+                  >
+                    Name
+                  </TableSortLabel>
+                </TableCell>
+                <TableCell>
+                  <TableSortLabel
+                    active={orderBy === "role"}
+                    direction={orderBy === "role" ? order : "asc"}
+                    onClick={() => handleRequestSort("role")}
+                  >
+                    Role
+                  </TableSortLabel>
+                </TableCell>
+                <TableCell>
+                  <TableSortLabel
+                    active={orderBy === "status"}
+                    direction={orderBy === "status" ? order : "asc"}
+                    onClick={() => handleRequestSort("status")}
+                  >
+                    Status
+                  </TableSortLabel>
+                </TableCell>
+                <TableCell>
+                  <TableSortLabel
+                    active={orderBy === "department"}
+                    direction={orderBy === "department" ? order : "asc"}
+                    onClick={() => handleRequestSort("department")}
+                  >
+                    Department
+                  </TableSortLabel>
+                </TableCell>
+                <TableCell>
+                  <TableSortLabel
+                    active={orderBy === "joinDate"}
+                    direction={orderBy === "joinDate" ? order : "asc"}
+                    onClick={() => handleRequestSort("joinDate")}
+                  >
+                    Join Date
+                  </TableSortLabel>
+                </TableCell>
+              </TableRow>
+            </TableHead>
+            <TableBody>
+              {getCurrentPageData().map((row) => (
+                <TableRow
+                  key={row.id}
+                  sx={{
+                    "&:nth-of-type(odd)": { backgroundColor: "action.hover" },
+                    "&:hover": { backgroundColor: "action.selected" },
+                  }}
+                >
+                  <TableCell>{row.name}</TableCell>
+                  <TableCell>{row.role}</TableCell>
+                  <TableCell>
+                    <Box
+                      sx={{
+                        backgroundColor:
+                          row.status === "Active"
+                            ? "success.light"
+                            : row.status === "Away"
+                            ? "warning.light"
+                            : "error.light",
+                        color: "common.white",
+                        px: 2,
+                        py: 0.5,
+                        borderRadius: 1,
+                        display: "inline-block",
+                      }}
+                    >
+                      {row.status}
+                    </Box>
+                  </TableCell>
+                  <TableCell>{row.department}</TableCell>
+                  <TableCell>{row.joinDate}</TableCell>
+                </TableRow>
+              ))}
+            </TableBody>
+            <TableFooter>
+              <TableRow>
+                <TablePagination
+                  rowsPerPageOptions={[5, 10, 25]}
+                  colSpan={5}
+                  count={tableData.length}
+                  rowsPerPage={rowsPerPage}
+                  page={page}
+                  onPageChange={handleChangePage}
+                  onRowsPerPageChange={handleChangeRowsPerPage}
+                />
+              </TableRow>
+            </TableFooter>
+          </Table>
+        </TableContainer>
+
+        {/* Simple Table Example */}
+        <Typography variant="h6" gutterBottom sx={{ mt: 4 }}>
+          Simple Table
+        </Typography>
+        <TableContainer component={Paper} variant="outlined">
+          <Table size="small">
+            <TableHead>
+              <TableRow>
+                <TableCell>Name</TableCell>
+                <TableCell>Role</TableCell>
+                <TableCell>Status</TableCell>
+              </TableRow>
+            </TableHead>
+            <TableBody>
+              {tableData.slice(0, 4).map((row) => (
+                <TableRow key={row.id}>
+                  <TableCell>{row.name}</TableCell>
+                  <TableCell>{row.role}</TableCell>
+                  <TableCell>{row.status}</TableCell>
+                </TableRow>
+              ))}
+            </TableBody>
+          </Table>
+        </TableContainer>
       </Paper>
     </Paper>
   );
