@@ -1,8 +1,10 @@
 import { useState, useEffect } from "react";
 import PropTypes from "prop-types";
 import storage from "../utils/storage";
-import { mockUsers } from "../data/mockUsers.js";
+import { authApi } from '../services/api';
+import { mockUsers } from "../data/mockUsers";
 import { AuthContext } from "../contexts/AuthContext";
+import config from "../utils/config";
 
 export const AuthProvider = ({ children }) => {
   const [user, setUser] = useState(() => storage.get("user"));
@@ -16,22 +18,42 @@ export const AuthProvider = ({ children }) => {
     setLoading(false);
   }, []);
 
+  const mockLogin = async (email, password) => {
+    const foundUser = mockUsers.users.find(
+      (u) => u.email === email && u.password === password
+    );
+
+    if (!foundUser) {
+      throw new Error("Invalid credentials");
+    }
+
+    const userData = {
+      id: foundUser.id,
+      email: foundUser.email,
+      name: foundUser.name,
+      role: foundUser.role,
+    };
+
+    return userData;
+  };
+
+  const apiLogin = async (email, password) => {
+    const response = await authApi.login(email, password);
+
+    const userData = {
+      email: email,
+      access_token: response.access_token,
+      token_type: response.token_type
+    };
+
+    return userData;
+  };
+
   const login = async (email, password) => {
     try {
-      const foundUser = mockUsers.users.find(
-        (u) => u.email === email && u.password === password
-      );
-
-      if (!foundUser) {
-        throw new Error("Invalid credentials");
-      }
-
-      const userData = {
-        id: foundUser.id,
-        email: foundUser.email,
-        name: foundUser.name,
-        role: foundUser.role,
-      };
+      const userData = config.mockLogin
+        ? await mockLogin(email, password)
+        : await apiLogin(email, password);
 
       storage.set("user", userData);
       setUser(userData);

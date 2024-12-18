@@ -15,6 +15,7 @@ import { useForm } from "../hooks/useForm";
 import { LOGIN_FORM } from "../reducers/forms";
 import { mockUsers } from "../data/mockUsers";
 import { StyledButton, LoginButton, LogoutButton } from "../components/buttons";
+import config from "../utils/config";
 
 export const Login = () => {
   const {
@@ -92,6 +93,11 @@ export const Login = () => {
         }}
       >
         <Typography variant="h1">Login</Typography>
+        {config.mockLogin && (
+          <Alert severity="info">
+            config.mockLogin is true.
+          </Alert>
+        )}
         <Link onClick={() => navigate("/")}>Homepage</Link>
         <Stack direction="row" spacing={2} sx={{ mb: 2 }}>
           <StyledButton

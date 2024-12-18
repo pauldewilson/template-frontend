@@ -64,7 +64,6 @@ export const Success = () => {
           </Box>
           <StyledButton
             variant="contained"
-            color="primary"
             onClick={() => navigate("/showcases")}
             data-testid="logout-button"
           >
