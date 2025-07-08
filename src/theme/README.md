@@ -1,69 +1,109 @@
-# Theme Directory Documentation
+# Theme System Documentation
 
 This directory contains the theme configuration for the Material-UI (MUI) based application. The theme system provides consistent styling across the application with support for both light and dark modes.
 
 ## Files Overview
 
-### `colors.js`
-Contains color palette definitions for both light and dark modes. The colors are organized into:
-- Primary colors
-- Secondary colors
-- Background colors
-- Text colors
-- Status colors (success, warning, error)
+### `design-config.js`
+**Central design configuration file** - Contains all global design values used throughout the theme.
 
-To modify colors:
-1. Use MUI's color palettes (`blue`, `orange`, etc.) or define custom RGBA values
-2. Adjust color intensity using array indices (e.g., `blue[600]` for main, `blue[400]` for light)
-3. Use `darken()` function for dark mode variants
+- **Border Radius**: Global border radius values (base: 2px, small: 1px, large: 4px, full: 999px)
+- **Transitions**: Animation timing and easing functions
+- **Spacing**: Base spacing unit (8px)
+- **Typography**: Font scale and weights
+- **Elevation**: Shadow levels for depth
 
-### `components.js`
-Defines custom styling for MUI components. Key features:
-- Global styling constants (e.g., `muiPixelMultiple = 8`)
-- Disabled state styling (`disabledStyles` object)
-- Component-specific overrides
-
-To customize components:
-1. Modify existing component styles in the `components` object
-2. Add new component overrides following MUI's naming convention (`Mui{ComponentName}`)
-3. Use theme-aware styling with `({ theme }) => ({})` syntax for dark/light mode support
-
-### `shadows.js`
-Defines shadow configurations for elevation in both modes:
-- `lightShadows`: Array of 25 shadow definitions for light mode
-- `darkShadows`: Array of 25 shadow definitions for dark mode
-- Helper function to select appropriate shadow array based on theme mode
-
-To modify shadows:
-1. Adjust RGBA values in shadow strings
-2. Modify shadow array length (must maintain same length in both modes)
-3. Update shadow intensity by adjusting blur and spread values
+```javascript
+// Example usage
+borderRadius: designConfig.borderRadius.base  // 2px
+```
 
 ### `theme.js`
-Creates the MUI theme by combining all theme elements:
-- Imports and merges colors, components, and shadows
-- Sets global typography settings
-- Defines shape defaults
+**Main theme creator** - Combines all theme elements and creates the MUI theme.
 
-To modify the theme:
-1. Add new theme properties in `createAppTheme`
-2. Modify existing theme properties
-3. Import and use additional theme elements
+- Imports design configuration and applies it globally
+- Creates glassmorphism mixins for modern UI effects
+- Defines typography scales and breakpoints
+- Provides layout utilities (flexbox, grid, spacing)
+
+### `components.js`
+**Component styling overrides** - Customizes MUI components with consistent styling.
+
+- Global styling for all MUI components
+- Applies design-config values for consistency
+- Handles disabled states and theme-aware styling
+- **Note**: Hover effects are minimal and only used on truly interactive elements
+
+### `colors.js`
+**Color palette definitions** - Separate color schemes for light and dark modes.
+
+- Primary, secondary, and accent colors
+- Background and surface colors
+- Text colors with proper contrast ratios
+- Status colors (success, warning, error)
+
+### `shadows.js`
+**Elevation system** - Shadow definitions for creating depth.
+
+- 25 shadow levels for both light and dark modes
+- Consistent shadow progression
+- Theme-aware shadow intensity
 
 ### `themeContext.jsx`
-Provides theme context and switching functionality:
-- Manages theme mode state (light/dark)
+**Theme provider and mode switcher** - Manages theme state and switching.
+
+- Provides theme context to the entire app
+- Handles light/dark mode switching
 - Persists theme preference in localStorage
-- Provides theme toggle functionality
 
-To modify theme context:
-1. Add new theme-related context values
-2. Modify theme switching logic
-3. Add additional theme-related functionality
+## Recent Changes
 
-## Usage
+### Border Radius Configuration
+- **Global border radius set to 2px** (was 12px)
+- All components now use `designConfig.borderRadius.base`
+- Consistent across buttons, cards, form fields, and all UI elements
 
-```jsx
+### Hover Effects Cleanup
+- **Removed excessive hover effects** that were causing mobile UX issues
+- Hover effects now **only on buttons and truly interactive elements**
+- No more distracting card movements or form field jumps
+- Improved mobile experience (no stuck hover states)
+
+### Theme Mixins
+- **Glassmorphism effects** with theme-aware backgrounds
+- **Layout utilities** for modern responsive design
+- **Spacing utilities** for consistent component spacing
+
+## Usage Examples
+
+### Using Design Config
+```javascript
+import { designConfig } from '../theme/design-config';
+
+// Apply consistent border radius
+sx={{ borderRadius: designConfig.borderRadius.base }}
+
+// Use consistent transitions
+sx={{ transition: `all ${designConfig.transitions.duration.normal}ms` }}
+```
+
+### Theme-Aware Styling
+```javascript
+// Using theme mixins
+sx={(theme) => ({
+  ...theme.mixins.glassmorphismStrong,
+  ...theme.mixins.flexCenter,
+})}
+
+// Theme-aware colors
+sx={{
+  bgcolor: 'background.paper',
+  color: 'text.primary',
+}}
+```
+
+### Theme Context
+```javascript
 import { useTheme } from '../theme/themeContext';
 
 const Component = () => {
@@ -71,82 +111,66 @@ const Component = () => {
 
   return (
     <Button onClick={toggleColorMode}>
-      Toggle {mode === 'light' ? 'Dark' : 'Light'} Mode
+      {mode === 'light' ? '🌙' : '☀️'}
     </Button>
   );
 };
 ```
 
-## Making Changes
-
-1. **Color Changes**:
-   - Modify `lightColors` or `darkColors` in `colors.js`
-   - Use MUI's color palettes or custom RGBA values
-   - Test changes in both modes
-
-2. **Component Styling**:
-   - Find the component in `components.js`
-   - Update the `styleOverrides` object
-   - Use theme-aware styling for mode-specific changes
-
-3. **Adding New Components**:
-   ```javascript
-   Mui{ComponentName}: {
-     styleOverrides: {
-       root: ({ theme }) => ({
-         // your styles here
-       })
-     }
-   }
-   ```
-
-4. **Theme Switching**:
-   - Modify `themeContext.jsx` for custom switching logic
-   - Add new theme-related functionality
-   - Update persistence logic if needed
-
 ## Best Practices
 
-1. Always test changes in both light and dark modes
-2. Use theme-aware styling for color-sensitive components
-3. Maintain consistent spacing using `muiPixelMultiple`
-4. Follow MUI's component override naming conventions
-5. Use RGBA colors for better opacity control
-6. Test disabled states when modifying components
+1. **Always use design-config values** instead of hardcoded measurements
+2. **Test in both light and dark modes** before committing changes
+3. **Use theme-aware styling** for colors and backgrounds
+4. **Keep hover effects minimal** - only on buttons and interactive elements
+5. **Use glassmorphism mixins** for modern UI effects
+6. **Follow the 8px spacing system** from design-config
 
 ## Common Tasks
 
-1. **Adding a New Color**:
-   ```javascript
-   // In colors.js
-   export const lightColors = {
-     newColor: {
-       main: '#hexcode',
-       light: '#hexcode',
-       dark: '#hexcode',
-     },
-     // ...
-   };
-   ```
+### Adding a New Component Style
+```javascript
+// In components.js
+MuiNewComponent: {
+  styleOverrides: {
+    root: {
+      borderRadius: designConfig.borderRadius.base,
+      padding: designConfig.spacing.base * 2,
+    }
+  }
+}
+```
 
-2. **Modifying Component Spacing**:
-   ```javascript
-   // In components.js
-   MuiComponent: {
-     styleOverrides: {
-       root: {
-         padding: muiPixelMultiple * 2,
-         margin: muiPixelMultiple,
-       }
-     }
-   }
-   ```
+### Creating Theme-Aware Backgrounds
+```javascript
+// Use existing mixins
+sx={(theme) => theme.mixins.glassmorphismMedium}
 
-3. **Adding Theme-Aware Styles**:
-   ```javascript
-   root: ({ theme }) => ({
-     color: theme.palette.mode === 'dark'
-       ? 'rgba(255, 255, 255, 0.9)'
-       : 'rgba(0, 0, 0, 0.9)',
-   })
-   ```
+// Or create custom theme-aware styling
+sx={(theme) => ({
+  bgcolor: theme.palette.mode === 'light'
+    ? 'rgba(255, 255, 255, 0.9)'
+    : 'rgba(30, 30, 30, 0.9)'
+})}
+```
+
+### Adding Interactive Hover Effects
+```javascript
+// Only for truly interactive elements
+sx={(theme) => ({
+  ...theme.mixins.subtleHover,  // Subtle 1px movement
+  cursor: 'pointer',
+})}
+```
+
+## File Dependencies
+
+```
+design-config.js (base configuration)
+    ↓
+theme.js (main theme) + components.js (component overrides)
+    ↓
+colors.js + shadows.js (visual styling)
+    ↓
+themeContext.jsx (theme provider)
+```
