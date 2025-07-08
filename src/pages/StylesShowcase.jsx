@@ -30,6 +30,7 @@ import {
 } from "@mui/material";
 import { LoginButton, LogoutButton, StyledButton } from "../components/buttons";
 import { Search } from "@mui/icons-material";
+import { designConfig } from "../theme/design-config";
 
 export const StylesShowcase = () => {
   const [content, setContent] = useState({
@@ -155,10 +156,53 @@ export const StylesShowcase = () => {
   };
 
   return (
-    <Paper>
+    <Box sx={{ p: 4 }}>
+      {/* Header */}
+      <Box sx={{ textAlign: "center", mb: 6 }}>
+        <Typography
+          variant="h2"
+          sx={{
+            mb: 2,
+            background: "linear-gradient(135deg, #667eea 0%, #764ba2 100%)",
+            backgroundClip: "text",
+            WebkitBackgroundClip: "text",
+            WebkitTextFillColor: "transparent",
+            fontWeight: 700,
+          }}
+        >
+          Component Styles
+        </Typography>
+        <Typography
+          variant="h6"
+          sx={{
+            color: "text.secondary",
+            maxWidth: "700px",
+            mx: "auto",
+          }}
+        >
+          Interactive showcase of all styled components including forms, buttons, tables, and more
+        </Typography>
+      </Box>
+
       {/* Content Editor */}
-      <Paper>
-        <Typography variant="h2" gutterBottom>
+      <Paper
+        className="modern-card"
+        elevation={0}
+        sx={{
+          p: 4,
+          mb: 4,
+          ...(theme) => theme.mixins.glassmorphismStrong,
+          borderRadius: designConfig.borderRadius.base,
+        }}
+      >
+        <Typography
+          variant="h4"
+          sx={{
+            mb: 3,
+            fontWeight: 600,
+            color: "text.primary",
+          }}
+        >
           Content Editor
         </Typography>
         <Grid container spacing={2}>
@@ -203,9 +247,25 @@ export const StylesShowcase = () => {
         </Grid>
       </Paper>
       {/* Paper Showcase */}
-      <Paper>
-        <Typography variant="h2" gutterBottom>
-          Paper
+      <Paper
+        className="modern-card"
+        elevation={0}
+        sx={{
+          p: 4,
+          mb: 4,
+          ...(theme) => theme.mixins.glassmorphismStrong,
+          borderRadius: designConfig.borderRadius.base,
+        }}
+      >
+        <Typography
+          variant="h4"
+          sx={{
+            mb: 3,
+            fontWeight: 600,
+            color: "text.primary",
+          }}
+        >
+          Paper Components
         </Typography>
         <Typography variant="body1" gutterBottom>
           This background is Paper.
@@ -621,7 +681,7 @@ export const StylesShowcase = () => {
                         color: "common.white",
                         px: 2,
                         py: 0.5,
-                        borderRadius: 1,
+                        borderRadius: designConfig.borderRadius.small,
                         display: "inline-block",
                       }}
                     >
@@ -674,7 +734,7 @@ export const StylesShowcase = () => {
           </Table>
         </TableContainer>
       </Paper>
-    </Paper>
+    </Box>
   );
 };
 

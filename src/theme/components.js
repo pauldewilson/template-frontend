@@ -1,4 +1,6 @@
 // Pixel multiple for spacing and sizing (mui uses 8px as base)
+import { designConfig } from "./design-config";
+
 const muiPixelMultiple = 8;
 
 const disabledStyles = {
@@ -21,7 +23,7 @@ export const components = {
           width: 8,
         },
         "&::-webkit-scrollbar-thumb, & *::-webkit-scrollbar-thumb": {
-          borderRadius: 4,
+          borderRadius: designConfig.borderRadius.small,
           backgroundColor: "#6b6b6b",
           minHeight: 24,
         },
@@ -45,10 +47,35 @@ export const components = {
   MuiButton: {
     styleOverrides: {
       root: {
-        borderRadius: 4,
+        borderRadius: designConfig.borderRadius.base,
         textTransform: "none",
         fontWeight: 600,
-        padding: "8px 16px",
+        padding: "12px 24px",
+        fontSize: "0.875rem",
+        transition: `all ${designConfig.transitions.duration.normal}ms ${designConfig.transitions.easing}`,
+        "&:hover": {
+          transform: "translateY(-1px)",
+          boxShadow: "0 4px 12px rgba(0, 0, 0, 0.15)",
+        },
+        "&.large": {
+          padding: "16px 32px",
+          fontSize: "1rem",
+          borderRadius: designConfig.borderRadius.large,
+        },
+        "&.hero-button": {
+          padding: "16px 32px",
+          fontSize: "1.125rem",
+          borderRadius: designConfig.borderRadius.large,
+          fontWeight: 700,
+          background: "linear-gradient(135deg, #667eea 0%, #764ba2 100%)",
+          color: "white",
+          border: "none",
+          "&:hover": {
+            background: "linear-gradient(135deg, #5a67d8 0%, #6b46c1 100%)",
+            transform: "translateY(-2px)",
+            boxShadow: "0 8px 25px rgba(102, 126, 234, 0.4)",
+          },
+        },
       },
     },
   },
@@ -56,10 +83,28 @@ export const components = {
   MuiPaper: {
     styleOverrides: {
       root: {
-        borderRadius: 4,
+        borderRadius: designConfig.borderRadius.base,
         padding: 3 * muiPixelMultiple,
         marginBottom: 4 * muiPixelMultiple,
         backgroundColor: "background.paper",
+        transition: `all ${designConfig.transitions.duration.normal}ms ${designConfig.transitions.easing}`,
+        "&.modern-card": {
+          boxShadow: "0 4px 20px rgba(0, 0, 0, 0.08)",
+          border: "1px solid rgba(0, 0, 0, 0.05)",
+        },
+        "&.glassmorphism": {
+          background: "rgba(255, 255, 255, 0.25)",
+          backdropFilter: "blur(10px)",
+          border: "1px solid rgba(255, 255, 255, 0.3)",
+          boxShadow: "0 8px 32px rgba(0, 0, 0, 0.1)",
+        },
+        "&.hero-section": {
+          background: "linear-gradient(135deg, rgba(102, 126, 234, 0.1) 0%, rgba(118, 75, 162, 0.1) 100%)",
+          borderRadius: designConfig.borderRadius.large * 3, // 12px for special large sections
+          padding: "clamp(3rem, 6vw, 6rem)",
+          textAlign: "center",
+          border: "1px solid rgba(102, 126, 234, 0.2)",
+        },
       },
     },
   },
@@ -67,8 +112,16 @@ export const components = {
   MuiContainer: {
     styleOverrides: {
       root: {
-        paddingTop: 24,
-        paddingBottom: 24,
+        paddingTop: "clamp(2rem, 4vw, 4rem)",
+        paddingBottom: "clamp(2rem, 4vw, 4rem)",
+        "&.hero-container": {
+          paddingTop: "clamp(4rem, 8vw, 8rem)",
+          paddingBottom: "clamp(4rem, 8vw, 8rem)",
+        },
+        "&.section-container": {
+          paddingTop: "clamp(3rem, 6vw, 6rem)",
+          paddingBottom: "clamp(3rem, 6vw, 6rem)",
+        },
       },
     },
   },
@@ -149,9 +202,10 @@ export const components = {
           color: disabledStyles.textColor({ theme }),
         },
         "& .MuiOutlinedInput-root": {
-          borderRadius: 4,
+          borderRadius: designConfig.borderRadius.base,
+          transition: `all ${designConfig.transitions.duration.normal}ms ${designConfig.transitions.easing}`,
           "&.Mui-focused": {
-            boxShadow: "0 0 0 2px rgba(0,0,0,0.05)",
+            boxShadow: "0 0 0 2px rgba(102, 126, 234, 0.2)",
           },
           "&.Mui-disabled": {
             backgroundColor: disabledStyles.backgroundColor,
@@ -232,7 +286,7 @@ export const components = {
     },
     styleOverrides: {
       root: {
-        borderRadius: 4,
+        borderRadius: designConfig.borderRadius.base,
         "&.Mui-disabled": {
           backgroundColor: disabledStyles.backgroundColor,
           opacity: disabledStyles.opacity,
@@ -296,7 +350,7 @@ export const components = {
   MuiAlert: {
     styleOverrides: {
       root: {
-        borderRadius: 4,
+        borderRadius: designConfig.borderRadius.base,
         padding: "12px 16px",
       },
       standardError: {
@@ -348,7 +402,7 @@ export const components = {
   MuiCard: {
     styleOverrides: {
       root: {
-        borderRadius: 4,
+        borderRadius: designConfig.borderRadius.base,
         boxShadow: "0 2px 8px rgba(0,0,0,0.1)",
       },
     },
@@ -376,10 +430,10 @@ export const components = {
         },
       }),
       track: {
-        borderRadius: 4,
+        borderRadius: designConfig.borderRadius.base,
       },
       thumb: {
-        borderRadius: 4,
+        borderRadius: designConfig.borderRadius.base,
       },
     },
   },
@@ -387,7 +441,7 @@ export const components = {
   MuiListItem: {
     styleOverrides: {
       root: {
-        borderRadius: 4,
+        borderRadius: designConfig.borderRadius.base,
         "&:hover": {
           backgroundColor: "rgba(0,0,0,0.04)",
         },

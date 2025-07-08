@@ -1,412 +1,355 @@
 import { Box, Grid, Paper, Typography } from "@mui/material";
+import { designConfig } from "../theme/design-config";
 
 export const ThemeShowcase = () => {
-  return (
-    <Paper>
-      {/* Colors Showcase */}
-      <Paper>
-        <Typography variant="h2" gutterBottom>
-          Theme Colors
+  const renderColorSection = (title, colors, description) => (
+    <Box sx={{ mb: 6 }}>
+      <Typography
+        variant="h4"
+        sx={{
+          mb: 2,
+          fontWeight: 600,
+          color: "text.primary",
+        }}
+      >
+        {title}
+      </Typography>
+      {description && (
+        <Typography
+          variant="body2"
+          sx={{
+            mb: 3,
+            color: "text.secondary",
+            maxWidth: "600px",
+          }}
+        >
+          {description}
         </Typography>
-
-        {/* Primary Colors */}
-        <Box sx={{ mb: 4 }}>
-          <Typography variant="h3" gutterBottom>
-            Primary
-          </Typography>
-          <Grid container spacing={2}>
-            <Grid item xs={12} md={3}>
-              <Paper
-                sx={{
-                  bgcolor: "primary.main",
-                  p: 3,
-                  color: "primary.contrastText",
-                  mb: 1,
-                }}
-              >
-                <Typography variant="subtitle1">Primary Main</Typography>
-                <Typography variant="caption">primary.main</Typography>
-              </Paper>
-            </Grid>
-            <Grid item xs={12} md={3}>
-              <Paper
-                sx={{
-                  bgcolor: "primary.light",
-                  p: 3,
-                  color: "primary.contrastText",
-                  mb: 1,
-                }}
-              >
-                <Typography variant="subtitle1">Primary Light</Typography>
-                <Typography variant="caption">primary.light</Typography>
-              </Paper>
-            </Grid>
-            <Grid item xs={12} md={3}>
-              <Paper
-                sx={{
-                  bgcolor: "primary.dark",
-                  p: 3,
-                  color: "primary.contrastText",
-                  mb: 1,
-                }}
-              >
-                <Typography variant="subtitle1">Primary Dark</Typography>
-                <Typography variant="caption">primary.dark</Typography>
-              </Paper>
-            </Grid>
-          </Grid>
-        </Box>
-
-        {/* Secondary Colors */}
-        <Box sx={{ mb: 4 }}>
-          <Typography variant="h3" gutterBottom>
-            Secondary
-          </Typography>
-          <Grid container spacing={2}>
-            <Grid item xs={12} md={3}>
-              <Paper
-                sx={{
-                  bgcolor: "secondary.main",
-                  p: 3,
-                  color: "secondary.contrastText",
-                  mb: 1,
-                }}
-              >
-                <Typography variant="subtitle1">Secondary Main</Typography>
-                <Typography variant="caption">secondary.main</Typography>
-              </Paper>
-            </Grid>
-            <Grid item xs={12} md={3}>
-              <Paper
-                sx={{
-                  bgcolor: "secondary.light",
-                  p: 3,
-                  color: "secondary.contrastText",
-                  mb: 1,
-                }}
-              >
-                <Typography variant="subtitle1">Secondary Light</Typography>
-                <Typography variant="caption">secondary.light</Typography>
-              </Paper>
-            </Grid>
-            <Grid item xs={12} md={3}>
-              <Paper
-                sx={{
-                  bgcolor: "secondary.dark",
-                  p: 3,
-                  color: "secondary.contrastText",
-                  mb: 1,
-                }}
-              >
-                <Typography variant="subtitle1">Secondary Dark</Typography>
-                <Typography variant="caption">secondary.dark</Typography>
-              </Paper>
-            </Grid>
-          </Grid>
-        </Box>
-
-        {/* Background & Text Colors */}
-        <Box sx={{ mb: 4 }}>
-          <Typography variant="h3" gutterBottom>
-            Background & Text
-          </Typography>
-          <Grid container spacing={2}>
-            <Grid item xs={12} md={3}>
-              <Paper sx={{ bgcolor: "background.default", p: 3, mb: 1 }}>
-                <Typography variant="subtitle1">Background Default</Typography>
-                <Typography variant="caption">background.default</Typography>
-              </Paper>
-            </Grid>
-            <Grid item xs={12} md={3}>
-              <Paper sx={{ bgcolor: "background.paper", p: 3, mb: 1 }}>
-                <Typography variant="subtitle1">Background Paper</Typography>
-                <Typography variant="caption">background.paper</Typography>
-              </Paper>
-            </Grid>
-            <Grid item xs={12} md={3}>
-              <Paper sx={{ p: 3, mb: 1 }}>
-                <Typography variant="subtitle1" color="text.primary">
-                  Text Primary
-                </Typography>
-                <Typography variant="caption" color="text.secondary">
-                  Text Secondary
-                </Typography>
-              </Paper>
-            </Grid>
-          </Grid>
-        </Box>
-
-        {/* Status Colors */}
-        <Box>
-          <Typography variant="h3" gutterBottom>
-            Status Colors
-          </Typography>
-          <Grid container spacing={2}>
-            {/* Success Colors */}
-            <Grid item xs={12}>
-              <Typography variant="h4" gutterBottom>
-                Success
+      )}
+      <Grid container spacing={3}>
+        {colors.map((color, index) => (
+          <Grid item xs={12} sm={6} md={4} key={index}>
+            <Paper
+              className="modern-card"
+              sx={{
+                ...color.sx,
+                p: 3,
+                borderRadius: designConfig.borderRadius.base,
+              }}
+            >
+              <Typography variant="h6" sx={{ fontWeight: 600, mb: 1 }}>
+                {color.name}
               </Typography>
-              <Grid container spacing={2}>
-                <Grid item xs={12} md={3}>
-                  <Paper
-                    sx={{
-                      bgcolor: "success.light",
-                      p: 3,
-                      color: "#fff",
-                      mb: 1,
-                    }}
-                  >
-                    <Typography variant="subtitle1">Success Light</Typography>
-                    <Typography variant="caption">success.light</Typography>
-                  </Paper>
-                </Grid>
-                <Grid item xs={12} md={3}>
-                  <Paper
-                    sx={{ bgcolor: "success.main", p: 3, color: "#fff", mb: 1 }}
-                  >
-                    <Typography variant="subtitle1">Success Main</Typography>
-                    <Typography variant="caption">success.main</Typography>
-                  </Paper>
-                </Grid>
-                <Grid item xs={12} md={3}>
-                  <Paper
-                    sx={{ bgcolor: "success.dark", p: 3, color: "#fff", mb: 1 }}
-                  >
-                    <Typography variant="subtitle1">Success Dark</Typography>
-                    <Typography variant="caption">success.dark</Typography>
-                  </Paper>
-                </Grid>
-              </Grid>
-            </Grid>
-
-            {/* Warning Colors */}
-            <Grid item xs={12}>
-              <Typography variant="h4" gutterBottom>
-                Warning
+              <Typography variant="caption" sx={{ opacity: 0.8 }}>
+                {color.token}
               </Typography>
-              <Grid container spacing={2}>
-                <Grid item xs={12} md={3}>
-                  <Paper
-                    sx={{
-                      bgcolor: "warning.light",
-                      p: 3,
-                      color: "#fff",
-                      mb: 1,
-                    }}
-                  >
-                    <Typography variant="subtitle1">Warning Light</Typography>
-                    <Typography variant="caption">warning.light</Typography>
-                  </Paper>
-                </Grid>
-                <Grid item xs={12} md={3}>
-                  <Paper
-                    sx={{ bgcolor: "warning.main", p: 3, color: "#fff", mb: 1 }}
-                  >
-                    <Typography variant="subtitle1">Warning Main</Typography>
-                    <Typography variant="caption">warning.main</Typography>
-                  </Paper>
-                </Grid>
-                <Grid item xs={12} md={3}>
-                  <Paper
-                    sx={{ bgcolor: "warning.dark", p: 3, color: "#fff", mb: 1 }}
-                  >
-                    <Typography variant="subtitle1">Warning Dark</Typography>
-                    <Typography variant="caption">warning.dark</Typography>
-                  </Paper>
-                </Grid>
-              </Grid>
-            </Grid>
+            </Paper>
+          </Grid>
+        ))}
+      </Grid>
+    </Box>
+  );
 
-            {/* Error Colors */}
-            <Grid item xs={12}>
-              <Typography variant="h4" gutterBottom>
-                Error
+  const renderShadowSection = () => (
+    <Box sx={{ mb: 6 }}>
+      <Typography
+        variant="h4"
+        sx={{
+          mb: 2,
+          fontWeight: 600,
+          color: "text.primary",
+        }}
+      >
+        Elevation & Shadows
+      </Typography>
+      <Typography
+        variant="body2"
+        sx={{
+          mb: 3,
+          color: "text.secondary",
+          maxWidth: "600px",
+        }}
+      >
+        Material Design elevation levels create depth and hierarchy in your interface.
+      </Typography>
+      <Grid container spacing={3}>
+        {[1, 2, 4, 8, 12, 16].map((elevation) => (
+          <Grid item xs={12} sm={6} md={4} key={elevation}>
+            <Paper
+              elevation={elevation}
+              sx={{
+                p: 4,
+                borderRadius: designConfig.borderRadius.base,
+                display: "flex",
+                flexDirection: "column",
+                alignItems: "center",
+                justifyContent: "center",
+                minHeight: 120,
+              }}
+            >
+              <Typography variant="h6" sx={{ fontWeight: 600, mb: 1 }}>
+                Elevation {elevation}
               </Typography>
-              <Grid container spacing={2}>
-                <Grid item xs={12} md={3}>
-                  <Paper
-                    sx={{ bgcolor: "error.light", p: 3, color: "#fff", mb: 1 }}
-                  >
-                    <Typography variant="subtitle1">Error Light</Typography>
-                    <Typography variant="caption">error.light</Typography>
-                  </Paper>
-                </Grid>
-                <Grid item xs={12} md={3}>
-                  <Paper
-                    sx={{ bgcolor: "error.main", p: 3, color: "#fff", mb: 1 }}
-                  >
-                    <Typography variant="subtitle1">Error Main</Typography>
-                    <Typography variant="caption">error.main</Typography>
-                  </Paper>
-                </Grid>
-                <Grid item xs={12} md={3}>
-                  <Paper
-                    sx={{ bgcolor: "error.dark", p: 3, color: "#fff", mb: 1 }}
-                  >
-                    <Typography variant="subtitle1">Error Dark</Typography>
-                    <Typography variant="caption">error.dark</Typography>
-                  </Paper>
-                </Grid>
-              </Grid>
-            </Grid>
-          </Grid>
-        </Box>
-
-        {/* Real-world Usage Examples */}
-        <Box sx={{ mt: 4 }}>
-          <Typography variant="h3" gutterBottom>
-            Color Combinations
-          </Typography>
-          <Grid container spacing={2}>
-            <Grid item xs={12} md={4}>
-              <Paper
-                sx={{
-                  p: 3,
-                  bgcolor: "background.paper",
-                  border: 1,
-                  borderColor: "primary.main",
-                }}
-              >
-                <Typography variant="h6" color="primary.main" gutterBottom>
-                  Primary Background
-                </Typography>
-                <Typography variant="body2" color="text.secondary">
-                  Shows text contrast on primary background
-                </Typography>
-              </Paper>
-            </Grid>
-            <Grid item xs={12} md={4}>
-              <Paper
-                sx={{
-                  p: 3,
-                  bgcolor: "secondary.main",
-                  color: "secondary.contrastText",
-                }}
-              >
-                <Typography variant="h6" gutterBottom>
-                  Secondary Background
-                </Typography>
-                <Typography variant="body2" sx={{ opacity: 0.9 }}>
-                  Shows text contrast on secondary background
-                </Typography>
-              </Paper>
-            </Grid>
-            <Grid item xs={12} md={4}>
-              <Paper
-                sx={{
-                  p: 3,
-                  background: (theme) =>
-                    `linear-gradient(45deg, ${theme.palette.primary.main} 0%, ${theme.palette.secondary.main} 100%)`,
-                }}
-              >
-                <Typography variant="h6" sx={{ color: "#fff" }} gutterBottom>
-                  Gradient Background
-                </Typography>
-                <Typography
-                  variant="body2"
-                  sx={{ color: "#fff", opacity: 0.9 }}
-                >
-                  Shows how colors can be combined
-                </Typography>
-              </Paper>
-            </Grid>
-          </Grid>
-        </Box>
-      </Paper>
-
-      {/* Shadows Showcase */}
-      <Paper>
-        <Typography variant="h2" gutterBottom>
-          Shadows
-        </Typography>
-        <Grid container spacing={3}>
-          {[1, 4, 8, 12, 16, 24].map((elevation) => (
-            <Grid item xs={12} sm={6} md={4} key={elevation}>
-              <Paper
+              <Typography variant="caption" color="text.secondary">
                 elevation={elevation}
+              </Typography>
+            </Paper>
+          </Grid>
+        ))}
+      </Grid>
+    </Box>
+  );
+
+  const renderSpacingSection = () => (
+    <Box sx={{ mb: 6 }}>
+      <Typography
+        variant="h4"
+        sx={{
+          mb: 2,
+          fontWeight: 600,
+          color: "text.primary",
+        }}
+      >
+        Spacing System
+      </Typography>
+      <Typography
+        variant="body2"
+        sx={{
+          mb: 3,
+          color: "text.secondary",
+          maxWidth: "600px",
+        }}
+      >
+        Consistent spacing creates rhythm and visual harmony in your design.
+      </Typography>
+      <Grid container spacing={3}>
+        {[1, 2, 3, 4, 6, 8].map((spacing) => (
+          <Grid item xs={12} sm={6} md={4} key={spacing}>
+            <Paper
+              className="modern-card"
+              sx={{
+                p: 3,
+                borderRadius: designConfig.borderRadius.base,
+                display: "flex",
+                flexDirection: "column",
+                alignItems: "center",
+                gap: 2,
+              }}
+            >
+              <Box
                 sx={{
-                  p: 3,
+                  width: "100%",
+                  height: spacing * 8,
+                  background: "linear-gradient(135deg, #667eea 0%, #764ba2 100%)",
+                  borderRadius: designConfig.borderRadius.base,
                   display: "flex",
                   alignItems: "center",
                   justifyContent: "center",
-                  height: 100,
                 }}
               >
-                <Typography>Elevation {elevation}</Typography>
-              </Paper>
-            </Grid>
-          ))}
-        </Grid>
-      </Paper>
-
-      {/* Spacing Showcase */}
-      <Paper>
-        <Typography variant="h2" gutterBottom>
-          Spacing
-        </Typography>
-        <Grid container spacing={2}>
-          {[1, 2, 3, 4, 5, 6, 8, 10].map((spacing) => (
-            <Grid item xs={12} sm={6} md={3} key={spacing}>
-              <Paper
-                variant="outlined"
-                sx={{
-                  p: 2,
-                  display: "flex",
-                  flexDirection: "column",
-                  alignItems: "center",
-                  gap: 1,
-                }}
-              >
-                <Box
-                  sx={{
-                    width: "100%",
-                    height: spacing * 8,
-                    bgcolor: "primary.main",
-                    borderRadius: 1,
-                  }}
-                />
-                <Typography variant="caption">
-                  spacing({spacing}) = {spacing * 8}px
+                <Typography variant="caption" sx={{ color: "white", fontWeight: 600 }}>
+                  {spacing * 8}px
                 </Typography>
-              </Paper>
-            </Grid>
-          ))}
-        </Grid>
-      </Paper>
-
-      {/* Border Radius Showcase */}
-      <Paper>
-        <Typography variant="h2" gutterBottom>
-          Border Radius
-        </Typography>
-        <Grid container spacing={3}>
-          {[0, 1, 2, 4, 8, 12, 16, "50%"].map((radius) => (
-            <Grid item xs={6} sm={4} md={3} key={radius}>
-              <Paper
-                sx={{
-                  p: 2,
-                  textAlign: "center",
-                }}
-              >
-                <Box
-                  sx={{
-                    width: "100%",
-                    height: 100,
-                    bgcolor: "secondary.main",
-                    borderRadius: radius,
-                    mb: 1,
-                  }}
-                />
-                <Typography variant="caption">
-                  borderRadius: {radius}
+              </Box>
+              <Typography variant="body2" sx={{ textAlign: "center" }}>
+                <strong>spacing({spacing})</strong>
+                <br />
+                <Typography variant="caption" color="text.secondary">
+                  {spacing * 8}px
                 </Typography>
-              </Paper>
-            </Grid>
-          ))}
-        </Grid>
-      </Paper>
-    </Paper>
+              </Typography>
+            </Paper>
+          </Grid>
+        ))}
+      </Grid>
+    </Box>
+  );
+
+  return (
+    <Box sx={{ p: 4 }}>
+      <Box sx={{ textAlign: "center", mb: 6 }}>
+        <Typography
+          variant="h2"
+          sx={{
+            mb: 2,
+            background: "linear-gradient(135deg, #667eea 0%, #764ba2 100%)",
+            backgroundClip: "text",
+            WebkitBackgroundClip: "text",
+            WebkitTextFillColor: "transparent",
+            fontWeight: 700,
+          }}
+        >
+          Theme System
+        </Typography>
+        <Typography
+          variant="h6"
+          sx={{
+            color: "text.secondary",
+            maxWidth: "700px",
+            mx: "auto",
+          }}
+        >
+          Explore the comprehensive design system including colors, spacing, shadows, and typography
+        </Typography>
+      </Box>
+
+      {/* Primary Colors */}
+      {renderColorSection(
+        "Primary Colors",
+        [
+          {
+            name: "Primary Light",
+            token: "primary.light",
+            sx: { bgcolor: "primary.light", color: "primary.contrastText" },
+          },
+          {
+            name: "Primary Main",
+            token: "primary.main",
+            sx: { bgcolor: "primary.main", color: "primary.contrastText" },
+          },
+          {
+            name: "Primary Dark",
+            token: "primary.dark",
+            sx: { bgcolor: "primary.dark", color: "primary.contrastText" },
+          },
+        ],
+        "Primary colors are used for key actions, navigation, and important interface elements."
+      )}
+
+      {/* Secondary Colors */}
+      {renderColorSection(
+        "Secondary Colors",
+        [
+          {
+            name: "Secondary Light",
+            token: "secondary.light",
+            sx: { bgcolor: "secondary.light", color: "secondary.contrastText" },
+          },
+          {
+            name: "Secondary Main",
+            token: "secondary.main",
+            sx: { bgcolor: "secondary.main", color: "secondary.contrastText" },
+          },
+          {
+            name: "Secondary Dark",
+            token: "secondary.dark",
+            sx: { bgcolor: "secondary.dark", color: "secondary.contrastText" },
+          },
+        ],
+        "Secondary colors provide accent and complementary styling options."
+      )}
+
+      {/* Status Colors */}
+      {renderColorSection(
+        "Status Colors",
+        [
+          {
+            name: "Success",
+            token: "success.main",
+            sx: { bgcolor: "success.main", color: "white" },
+          },
+          {
+            name: "Warning",
+            token: "warning.main",
+            sx: { bgcolor: "warning.main", color: "white" },
+          },
+          {
+            name: "Error",
+            token: "error.main",
+            sx: { bgcolor: "error.main", color: "white" },
+          },
+          {
+            name: "Info",
+            token: "info.main",
+            sx: { bgcolor: "info.main", color: "white" },
+          },
+        ],
+        "Status colors communicate different states and provide user feedback."
+      )}
+
+      {/* Background Colors */}
+      {renderColorSection(
+        "Background & Surface",
+        [
+          {
+            name: "Background Default",
+            token: "background.default",
+            sx: { bgcolor: "background.default", color: "text.primary", border: "1px solid", borderColor: "divider" },
+          },
+          {
+            name: "Background Paper",
+            token: "background.paper",
+            sx: { bgcolor: "background.paper", color: "text.primary", border: "1px solid", borderColor: "divider" },
+          },
+          {
+            name: "Text Primary",
+            token: "text.primary",
+            sx: { bgcolor: "background.paper", color: "text.primary", border: "1px solid", borderColor: "divider" },
+          },
+          {
+            name: "Text Secondary",
+            token: "text.secondary",
+            sx: { bgcolor: "background.paper", color: "text.secondary", border: "1px solid", borderColor: "divider" },
+          },
+        ],
+        "Background and text colors create the foundation of your interface."
+      )}
+
+      {/* Shadows */}
+      {renderShadowSection()}
+
+      {/* Spacing */}
+      {renderSpacingSection()}
+
+      {/* Typography Demo */}
+      <Box sx={{ mb: 6 }}>
+        <Typography
+          variant="h4"
+          sx={{
+            mb: 2,
+            fontWeight: 600,
+            color: "text.primary",
+          }}
+        >
+          Typography Scale
+        </Typography>
+        <Typography
+          variant="body2"
+          sx={{
+            mb: 3,
+            color: "text.secondary",
+            maxWidth: "600px",
+          }}
+        >
+          Responsive typography that scales beautifully across all devices.
+        </Typography>
+        <Paper
+          className="modern-card"
+          sx={{
+            p: 4,
+            borderRadius: designConfig.borderRadius.base,
+            background: "linear-gradient(135deg, rgba(102, 126, 234, 0.05) 0%, rgba(118, 75, 162, 0.05) 100%)",
+            border: "1px solid rgba(102, 126, 234, 0.1)",
+          }}
+        >
+          <Typography variant="h1" sx={{ mb: 2 }}>Heading 1</Typography>
+          <Typography variant="h2" sx={{ mb: 2 }}>Heading 2</Typography>
+          <Typography variant="h3" sx={{ mb: 2 }}>Heading 3</Typography>
+          <Typography variant="h4" sx={{ mb: 2 }}>Heading 4</Typography>
+          <Typography variant="h5" sx={{ mb: 2 }}>Heading 5</Typography>
+          <Typography variant="h6" sx={{ mb: 2 }}>Heading 6</Typography>
+          <Typography variant="body1" sx={{ mb: 2 }}>
+            Body 1: This is the main body text used for most content. It provides good readability and comfortable line spacing.
+          </Typography>
+          <Typography variant="body2" sx={{ mb: 2 }}>
+            Body 2: Slightly smaller body text for secondary content and supporting information.
+          </Typography>
+          <Typography variant="caption" color="text.secondary">
+            Caption: Small text for labels, captions, and minor details.
+          </Typography>
+        </Paper>
+      </Box>
+    </Box>
   );
 };
 
